@@ -8,3 +8,4 @@ Project Plan:  Follow instructions, think about file structure and control flow,
 
 https://www.typescriptlang.org/docs/handbook/2/objects.html
 https://dmitripavlutin.com/typescript-index-signatures/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof

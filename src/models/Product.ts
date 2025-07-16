@@ -65,14 +65,22 @@ class Product {
   constructor(product: { [key: string]: any }) {
     for (const keyName in product) {
       this[keyName] = product[keyName];
-      //console.log(`${keyName}, ${this.keyName}`);
     }
+    // This way of adding to the constructor will be an issue if the object sent to constructor has any of the same keys as methods or properties of class Product.  A few ways to prevent this, set Object.defineProperty writable: false.  Or alter all object keys to start with 'obj' for example, and have some sort of comment or programming safety against the class Product having methods or properties starting with 'obj.
+
+    // Here I know there aren't any conflicts, so I leave off.
   }
   printId = () => {
     for (const key in this) {
       if (typeof this[key] !== 'function') {
         console.log(`${key}, ${this[key]}`)
+        // note:  Arrays of strings do not print with [].  Objects print with [object Object].
+        // tags: string[],
+        // dimensions: { width: number, height: number, depth: number}
+        // reviews: {"rating": number, "comment": string, "date": string that's a DateObject looking thing, "reviewerEmail": string}[] (that is, array of 3 objects), prints as [object Object], [object Object], [object Object].
+        // meta: {createdAt: string dateObject looking thing, updatedAt: string dateObject looking thing, barcode: string, qrCode: string}
 
+        //So I test the value; if it's an array of strings I use .join; if it's an object I iterate over keys, if it's an array of objects I iterate through the array iterating over the keys of each member object.
       }
     }
   }
