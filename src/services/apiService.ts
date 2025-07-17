@@ -1,5 +1,5 @@
-import { ConnectionError, errorHandler } from '../utils/errorHandler.ts';
-import { Product } from '../models/Product.ts';
+import { ConnectionError, errorHandler } from '../utils/errorHandler.js';
+import { Product } from '../models/Product.js';
 
 // export const getProducts = async () => {
 //   return fetch('https://dummyjson.com/products')

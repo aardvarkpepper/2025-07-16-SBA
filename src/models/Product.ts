@@ -1,5 +1,5 @@
-import { calculateDiscount } from '../utils/discountCalculator.ts';
-import { calculateTax } from '../utils/taxCalculator.ts';
+import { calculateDiscount } from '../utils/discountCalculator.js';
+import { calculateTax } from '../utils/taxCalculator.js';
 
 // const mrTest = {
 //   "id": 1,

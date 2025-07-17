@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,21 +7,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const Product_ts_1 = require("./models/Product.ts");
-const apiService_ts_1 = require("./services/apiService.ts");
-const errorHandler_ts_1 = require("./utils/errorHandler.ts");
+import { Product } from './models/Product.js';
+import { getProducts } from './services/apiService.js';
+import { errorHandler } from './utils/errorHandler.js';
 const container = document.getElementById('container');
+console.log('Index running before function invocation');
+// Changing tsconfig.json "module": "commonjs",   to "module": ""
 // just look at this magnificent naming convention.
-const demoralizedBecauseIDontHaveSufficientlySpecificFeedbackOnWhyILosePoints = () => __awaiter(void 0, void 0, void 0, function* () {
+const goTime = () => __awaiter(void 0, void 0, void 0, function* () {
     let productArray = [];
     console.log('Index running');
     try {
-        const productArrayData = yield (0, apiService_ts_1.getProducts)();
+        const productArrayData = yield getProducts();
         productArray = productArrayData;
         // yeah I could have used setTimeout to simulate passing the API data to individual products and Promise allSettled.  Whatev.
         for (let i = 0; i < productArray.length; i++) {
-            const newProduct = new Product_ts_1.Product(productArray[i]);
+            const newProduct = new Product(productArray[i]);
             //console.log(newProduct.displayDetails(container: HTMLElement));
             newProduct.displayDetails(container);
             // note:  remember getPriceWithDiscount is not used.
@@ -33,7 +33,7 @@ const demoralizedBecauseIDontHaveSufficientlySpecificFeedbackOnWhyILosePoints = 
         // could use type casting or whatever it's called to set error as Error, so 'error as Error' not required.  Eh.
         // Who cares, because it's not required and I won't know why I lose points anyways?
         // It's honestly demoralizing.  Well, I'll try not to think on it overly much.
-        (0, errorHandler_ts_1.errorHandler)(error, 'All information necessary to tracing the error is in the error message.');
+        errorHandler(error, 'All information necessary to tracing the error is in the error message.');
     }
 });
 /**
@@ -41,4 +41,4 @@ const demoralizedBecauseIDontHaveSufficientlySpecificFeedbackOnWhyILosePoints = 
 Use asynchronous functions to fetch product data and display it.
 Demonstrate error handling and OOP principles in action.
  */
-demoralizedBecauseIDontHaveSufficientlySpecificFeedbackOnWhyILosePoints();
+goTime();

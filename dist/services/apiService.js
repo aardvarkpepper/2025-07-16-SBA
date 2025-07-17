@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,9 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProducts = void 0;
-const errorHandler_ts_1 = require("../utils/errorHandler.ts");
+import { ConnectionError, errorHandler } from '../utils/errorHandler.js';
 // export const getProducts = async () => {
 //   return fetch('https://dummyjson.com/products')
 //     .then(response => {
@@ -25,7 +22,7 @@ const errorHandler_ts_1 = require("../utils/errorHandler.ts");
 //       console.error('console message', error);
 //     })
 //   }
-const getProducts = () => __awaiter(void 0, void 0, void 0, function* () {
+export const getProducts = () => __awaiter(void 0, void 0, void 0, function* () {
     // typescript states 'The return type of an async function or method must be the global Promise<T> type.  Did you mean to write Promise<Product[]>?  then mentioned undefined, which I suppose could be from error.  Regardless.
     try {
         const response = yield fetch('https://dummyjson.com/products');
@@ -37,17 +34,16 @@ const getProducts = () => __awaiter(void 0, void 0, void 0, function* () {
             return responseJSON.products;
         }
         else {
-            throw new errorHandler_ts_1.ConnectionError(`Response not OK.`, response.status);
+            throw new ConnectionError(`Response not OK.`, response.status);
         }
         // throw new ConnectionError(``, 404); // == test
     }
     catch (error) {
-        (0, errorHandler_ts_1.errorHandler)(error);
+        errorHandler(error);
         // console.error(`Error in getProducts`, error, (error as ConnectionError).status); // catches thrown error
         // throw new Error('this is a second generation error'); // passes error
     }
 });
-exports.getProducts = getProducts;
 // export const localInvocation = async () => {
 //   try {
 //     const data = await getProducts(); // have to catch the error.  so stick in a try catch block.

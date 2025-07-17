@@ -1,11 +1,14 @@
-import { Product } from './models/Product.ts';
-import { getProducts } from './services/apiService.ts';
-import { errorHandler } from './utils/errorHandler.ts';
+import { Product } from './models/Product.js';
+import { getProducts } from './services/apiService.js';
+import { errorHandler } from './utils/errorHandler.js';
 
 const container = document.getElementById('container');
+console.log('Index running before function invocation');
+
+// Changing tsconfig.json "module": "commonjs",   to "module": ""
 
 // just look at this magnificent naming convention.
-const demoralizedBecauseIDontHaveSufficientlySpecificFeedbackOnWhyILosePoints = async (): Promise<void> => {
+const goTime = async (): Promise<void> => {
   let productArray: Product[] = [];
   console.log('Index running');
   try {
@@ -41,4 +44,4 @@ Use asynchronous functions to fetch product data and display it.
 Demonstrate error handling and OOP principles in action.
  */
 
-demoralizedBecauseIDontHaveSufficientlySpecificFeedbackOnWhyILosePoints();
+goTime();

@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Product = void 0;
-const discountCalculator_ts_1 = require("../utils/discountCalculator.ts");
-const taxCalculator_ts_1 = require("../utils/taxCalculator.ts");
+import { calculateDiscount } from '../utils/discountCalculator.js';
+import { calculateTax } from '../utils/taxCalculator.js';
 // const mrTest = {
 //   "id": 1,
 //   "title": "Essence Mascara Lash Princess",
@@ -61,7 +58,7 @@ const taxCalculator_ts_1 = require("../utils/taxCalculator.ts");
 //   "thumbnail": "...",
 //   "images": ["...", "...", "..."]
 // };
-class Product {
+export class Product {
     constructor(product) {
         this.displayDetails = (productContainer) => {
             const fragment = new DocumentFragment();
@@ -89,8 +86,8 @@ class Product {
             //return '======='; // separator, and so test doesn't have 'undefined'
         };
         this.getPriceWithDiscount = (decimalPlaces = 2) => {
-            const discountPrice = (0, discountCalculator_ts_1.calculateDiscount)(this.price, this.discountPercentage);
-            const taxOnDiscountPrice = (0, taxCalculator_ts_1.calculateTax)(discountPrice, this.category);
+            const discountPrice = calculateDiscount(this.price, this.discountPercentage);
+            const taxOnDiscountPrice = calculateTax(discountPrice, this.category);
             const factor = Math.pow(10, decimalPlaces);
             return Math.round((discountPrice + taxOnDiscountPrice) * factor) / factor;
         };
@@ -102,7 +99,6 @@ class Product {
         // Here I know there aren't any conflicts, so I leave off.
     }
 }
-exports.Product = Product;
 // const mrTest2 = new Product(mrTest);
 // console.log(`====`);
 // console.log(mrTest2.displayDetails());
