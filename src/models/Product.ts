@@ -1,5 +1,6 @@
 import { calculateDiscount } from '../utils/discountCalculator.ts';
 import { calculateTax } from '../utils/taxCalculator.ts';
+import { getProducts } from '../services/apiService.ts';
 
 // Define a Product class that includes the appropriate properties based on data provided in the API response.
 // Include methods displayDetails() and getPriceWithDiscount(), and implement them appropriately based on the provided data.
@@ -63,7 +64,7 @@ const mrTest = {
   "images": ["...", "...", "..."]
 };
 
-class Product {
+export class Product {
   [key: string]: any;
   constructor(product: { [key: string]: any }) {
     for (const keyName in product) {

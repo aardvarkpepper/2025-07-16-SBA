@@ -16,3 +16,6 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/type
 https://stackoverflow.com/questions/41639501/prevent-overriding-javascript-function
 https://coreui.io/blog/how-to-round-a-number-to-two-decimal-places-in-javascript/
 https://www.tax.ny.gov/pubs_and_bulls/tg_bulletins/st/taxable_receipt.htm
+https://stackoverflow.com/questions/55447472/how-can-i-get-my-fetch-error-to-show-an-http-status-code
+https://developer.mozilla.org/en-US/docs/Web/API/Response
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
