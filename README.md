@@ -10,7 +10,7 @@ But when it comes to learning, perhaps repeatable errors and a lack of understan
 
 ## Reflection
 
-- TypeScript is about types.  I used them.  Specified parameter types, function return types, probably will use a type alias before finishing I shouldn't wonder, used index signatures for handling dynamic cata.  OOP (object oriented programming) is implemented through use of classes with methods, creation of new instances of those classes, use of conceptual objects to organize, reference, and manipulate data.
+- TypeScript is about types.  I used them.  Specified parameter types, function return types, probably will use a type alias before finishing I shouldn't wonder, used index signatures for handling dynamic data.  OOP (object oriented programming) is implemented through use of classes with methods, creation of new instances of those classes, use of conceptual objects to organize, reference, and manipulate data.
 
 - I didn't overcome the psychological challenge, as it's not within my ability to resolve the cause.  Bothered about losing earlier points on assignments and not knowing why I lost points as feedback wasn't given, or was not specific enough that I could identify specific issues.  It's like a black box function that you can't debug.  I can't even say I should adjust my thoughts on the matter; I think it's perfectly natural to want to know how to improve a process.  If I choose not to go to certain lengths to get points on an assignment that's a choice I make; if I lose points and don't know why that's just confusing.
 
