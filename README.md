@@ -74,3 +74,5 @@ https://stackoverflow.com/questions/55447472/how-can-i-get-my-fetch-error-to-sho
 https://developer.mozilla.org/en-US/docs/Web/API/Response
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
+https://regex101.com/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase
