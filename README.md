@@ -14,3 +14,5 @@ https://www.typescriptlang.org/docs/handbook/2/objects.html
 https://dmitripavlutin.com/typescript-index-signatures/
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
 https://stackoverflow.com/questions/41639501/prevent-overriding-javascript-function
+https://coreui.io/blog/how-to-round-a-number-to-two-decimal-places-in-javascript/
+https://www.tax.ny.gov/pubs_and_bulls/tg_bulletins/st/taxable_receipt.htm

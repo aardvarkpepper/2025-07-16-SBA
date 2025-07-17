@@ -1,8 +1,9 @@
 import { calculateDiscount } from '../utils/discountCalculator.ts';
+import { calculateTax } from '../utils/taxCalculator.ts';
 
 // Define a Product class that includes the appropriate properties based on data provided in the API response.
 // Include methods displayDetails() and getPriceWithDiscount(), and implement them appropriately based on the provided data.
-console.log(calculateDiscount());
+//console.log(calculateDiscount());
 const mrTest = {
   "id": 1,
   "title": "Essence Mascara Lash Princess",
@@ -73,7 +74,13 @@ class Product {
     // Here I know there aren't any conflicts, so I leave off.
   }
   displayDetails = () => {}
-  getPriceWithDiscount = () => {}
+  getPriceWithDiscount = (decimalPlaces: number = 2) => {
+    const discountPrice = calculateDiscount(this.price, this.discountPercentage);
+    const taxOnDiscountPrice = calculateTax(discountPrice, this.category);
+    const factor = Math.pow(10, decimalPlaces);
+    return Math.round((discountPrice + taxOnDiscountPrice) * factor) / factor;
+  }
+
   printId = () => {
     for (const key in this) {
       if (typeof this[key] !== 'function') {
@@ -93,5 +100,7 @@ class Product {
 const mrTest2 = new Product(mrTest);
 
 console.log(`====`);
+
+console.log(mrTest2.getPriceWithDiscount());
 
 //mrTest2.printId();
