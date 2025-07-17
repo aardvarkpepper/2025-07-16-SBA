@@ -1,4 +1,5 @@
 import { ConnectionError, errorHandler } from '../utils/errorHandler.ts';
+import { Product } from '../models/Product.ts';
 
 // export const getProducts = async () => {
 //   return fetch('https://dummyjson.com/products')
@@ -15,7 +16,8 @@ import { ConnectionError, errorHandler } from '../utils/errorHandler.ts';
 //     })
 //   }
 
-export const getProducts = async () => {
+export const getProducts = async (): Promise<Product[] | undefined> => {
+  // typescript states 'The return type of an async function or method must be the global Promise<T> type.  Did you mean to write Promise<Product[]>?  then mentioned undefined, which I suppose could be from error.  Regardless.
   try {
     const response = await fetch('https://dummyjson.com/products');
     if (response.ok) {
@@ -35,24 +37,24 @@ export const getProducts = async () => {
   }
 }
 
-export const localInvocation = async () => {
-  try {
-    const data = await getProducts(); // have to catch the error.  so stick in a try catch block.
-    console.log(data);
-  } catch (error) {
-    // There is only one await above.  Everything is local reference, apart from the invocation itself, which throws and catches an exception.  There really isn't any need to do another try/catch as there's nothing left that could be caught.  Unless console.log(data) can trigger an error.
+// export const localInvocation = async () => {
+//   try {
+//     const data = await getProducts(); // have to catch the error.  so stick in a try catch block.
+//     console.log(data);
+//   } catch (error) {
+//     // There is only one await above.  Everything is local reference, apart from the invocation itself, which throws and catches an exception.  There really isn't any need to do another try/catch as there's nothing left that could be caught.  Unless console.log(data) can trigger an error.
 
-    //The error catch in getProducts alread triggers 'ConnectionError at getProducts'.  That's really what's wanted.
-    // Console.error here just adds errorHandler to the chain.  There isn't any error there.  Or is there?
-    // There really isn't anything that could trigger an error apart from the single await in the try.
-    // So in this case, as the error is already thrown and caught, technically the error should propagate up the chain
-    // but . . . sigh.  Whatever.
-    //console.error('localInvocation error', error);
-    /**
-     * Error in getProducts Error: the response is not okay (the catch prints, then the error caught prints)
-     * localInvocation error Error: this is a second generation error (the catch prints, then the error caught prints)
-     */
-  }
-}
+//     //The error catch in getProducts alread triggers 'ConnectionError at getProducts'.  That's really what's wanted.
+//     // Console.error here just adds errorHandler to the chain.  There isn't any error there.  Or is there?
+//     // There really isn't anything that could trigger an error apart from the single await in the try.
+//     // So in this case, as the error is already thrown and caught, technically the error should propagate up the chain
+//     // but . . . sigh.  Whatever.
+//     //console.error('localInvocation error', error);
+//     /**
+//      * Error in getProducts Error: the response is not okay (the catch prints, then the error caught prints)
+//      * localInvocation error Error: this is a second generation error (the catch prints, then the error caught prints)
+//      */
+//   }
+// }
 
 //localInvocation();

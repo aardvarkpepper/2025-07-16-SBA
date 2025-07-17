@@ -7,7 +7,7 @@ export class ConnectionError extends Error {
   } 
 }
 
-export const errorHandler = (error: Error, customMessage: string = "") => {
+export const errorHandler = (error: Error, customMessage: string = ""): void => {
   if (error instanceof ConnectionError) {
     console.log(`Connection error.  HTTP response status code ${error.status}.`);
   }
