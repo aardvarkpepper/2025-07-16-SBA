@@ -67,6 +67,7 @@ export class Product {
       this[keyName] = product[keyName];
     }
     // This way of adding to the constructor will be an issue if the object sent to constructor has any of the same keys as methods or properties of class Product.  A few ways to prevent this, set Object.defineProperty writable: false.  Or alter all object keys to start with 'obj' for example, and have some sort of comment or programming safety against the class Product having methods or properties starting with 'obj.
+    // note:  can also use 'readonly' in Typescript, or I think set some properties in tsconfig.json.  Eh.
 
     // Here I know there aren't any conflicts, so I leave off.
   }
