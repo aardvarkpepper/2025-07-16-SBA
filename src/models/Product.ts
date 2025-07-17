@@ -74,7 +74,18 @@ export class Product {
 
     // Here I know there aren't any conflicts, so I leave off.
   }
-  displayDetails = () => {}
+  displayDetails = () => {
+    for (const key in this) {
+      if (typeof this[key] !== 'function') {
+        if (typeof this[key] === 'object') {
+          console.log(`${key}, ${JSON.stringify(this[key])}`);
+        } else {
+          console.log(`${key}, ${this[key]}`);
+        }
+      }
+    }
+    return '======='; // seperator, and so test doesn't have 'undefined'
+  }
   getPriceWithDiscount = (decimalPlaces: number = 2) => {
     const discountPrice = calculateDiscount(this.price, this.discountPercentage);
     const taxOnDiscountPrice = calculateTax(discountPrice, this.category);
@@ -102,6 +113,6 @@ const mrTest2 = new Product(mrTest);
 
 console.log(`====`);
 
-console.log(mrTest2.getPriceWithDiscount());
+console.log(mrTest2.displayDetails());
 
 //mrTest2.printId();
