@@ -1,5 +1,23 @@
 {
+  "name": "e-commerce-system",
+  "version": "1.0.0",
+  "description": "<p align=\"center\"> <img src=\"image.png\" alt=\"Image of a pun on hack jobs\" width=\"600\"/> </p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aardvarkpepper/2025-07-16-SBA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "type": "module",
+  "bugs": {
+    "url": "https://github.com/aardvarkpepper/2025-07-16-SBA/issues"
+  },
+  "homepage": "https://github.com/aardvarkpepper/2025-07-16-SBA#readme",
   "devDependencies": {
     "@types/node": "^24.0.14",
     "typescript": "^5.8.3"

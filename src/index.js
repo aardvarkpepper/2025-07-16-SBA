@@ -12,16 +12,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Product_ts_1 = require("./models/Product.ts");
 const apiService_ts_1 = require("./services/apiService.ts");
 const errorHandler_ts_1 = require("./utils/errorHandler.ts");
+const container = document.getElementById('container');
 // just look at this magnificent naming convention.
 const demoralizedBecauseIDontHaveSufficientlySpecificFeedbackOnWhyILosePoints = () => __awaiter(void 0, void 0, void 0, function* () {
     let productArray = [];
+    console.log('Index running');
     try {
         const productArrayData = yield (0, apiService_ts_1.getProducts)();
         productArray = productArrayData;
         // yeah I could have used setTimeout to simulate passing the API data to individual products and Promise allSettled.  Whatev.
         for (let i = 0; i < productArray.length; i++) {
             const newProduct = new Product_ts_1.Product(productArray[i]);
-            console.log(newProduct.displayDetails());
+            //console.log(newProduct.displayDetails(container: HTMLElement));
+            newProduct.displayDetails(container);
             // note:  remember getPriceWithDiscount is not used.
         }
     }

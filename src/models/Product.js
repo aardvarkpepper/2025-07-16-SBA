@@ -63,18 +63,30 @@ const taxCalculator_ts_1 = require("../utils/taxCalculator.ts");
 // };
 class Product {
     constructor(product) {
-        this.displayDetails = () => {
+        this.displayDetails = (productContainer) => {
+            const fragment = new DocumentFragment();
             for (const key in this) {
+                const productPropertyContainer = document.createElement('div');
                 if (typeof this[key] !== 'function') {
+                    const productPropertyKey = document.createElement('span');
+                    const productPropertyValue = document.createElement('span');
+                    productPropertyKey.textContent = key;
+                    productPropertyContainer.appendChild(productPropertyKey);
                     if (typeof this[key] === 'object') {
                         console.log(`${key}, ${JSON.stringify(this[key])}`);
+                        productPropertyValue.textContent = JSON.stringify(this[key]);
                     }
                     else {
                         console.log(`${key}, ${this[key]}`);
+                        productPropertyValue.textContent = this[key];
                     }
+                    productPropertyContainer.appendChild(productPropertyValue);
+                    fragment.appendChild(productPropertyContainer);
                 }
             }
-            return '======='; // separator, and so test doesn't have 'undefined'
+            productContainer.appendChild(fragment);
+            // return productContainer; I don't think it's necessary; should directly append.
+            //return '======='; // separator, and so test doesn't have 'undefined'
         };
         this.getPriceWithDiscount = (decimalPlaces = 2) => {
             const discountPrice = (0, discountCalculator_ts_1.calculateDiscount)(this.price, this.discountPercentage);

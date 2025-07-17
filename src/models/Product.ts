@@ -71,17 +71,34 @@ export class Product {
 
     // Here I know there aren't any conflicts, so I leave off.
   }
-  displayDetails = (): string => {
+  displayDetails = (productContainer: HTMLElement): void => {
+
+    const fragment = new DocumentFragment();
+
     for (const key in this) {
+      const productPropertyContainer = document.createElement('div');
       if (typeof this[key] !== 'function') {
+        const productPropertyKey = document.createElement('span');
+        const productPropertyValue = document.createElement('span');
+        productPropertyKey.textContent = key;
+        productPropertyContainer.appendChild(productPropertyKey);
+
         if (typeof this[key] === 'object') {
           console.log(`${key}, ${JSON.stringify(this[key])}`);
+          productPropertyValue.textContent = JSON.stringify(this[key]);
         } else {
           console.log(`${key}, ${this[key]}`);
+          productPropertyValue.textContent = this[key];
         }
+
+        productPropertyContainer.appendChild(productPropertyValue);
+        fragment.appendChild(productPropertyContainer);
       }
     }
-    return '======='; // separator, and so test doesn't have 'undefined'
+    productContainer.appendChild(fragment);
+
+    // return productContainer; I don't think it's necessary; should directly append.
+    //return '======='; // separator, and so test doesn't have 'undefined'
   }
   getPriceWithDiscount = (decimalPlaces: number = 2): number => {
     const discountPrice = calculateDiscount(this.price, this.discountPercentage);

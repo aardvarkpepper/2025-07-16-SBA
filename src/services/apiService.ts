@@ -16,6 +16,7 @@ import { Product } from '../models/Product.ts';
 //     })
 //   }
 
+
 export const getProducts = async (): Promise<Product[] | undefined> => {
   // typescript states 'The return type of an async function or method must be the global Promise<T> type.  Did you mean to write Promise<Product[]>?  then mentioned undefined, which I suppose could be from error.  Regardless.
   try {
