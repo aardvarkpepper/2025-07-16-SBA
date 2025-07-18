@@ -1,0 +1,3 @@
+.product:nth-child(even) {
+  background-color: azure;
+}

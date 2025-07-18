@@ -1,66 +1,32 @@
 <p align="center">
-<img src="image.png" alt="Image of a pun on hack jobs" width="600"/>
+<img src="image.png" alt="A mass of kittens representing HTML into Javascript errors" width="600"/>
 </p>
-
-Sadly, Hack Jobs never knew why they lost points.  If only an instructor had made comments on what specifically was wrong (specific enough that specific errors could be identified)!  Repeatable errors could have been avoided!
-
-Of course, that wouldn't have been as funny.
-
-But when it comes to learning, perhaps repeatable errors and a lack of understanding of what really went wrong are less a matter for laughter, and more opportunities for growth.  Opportunities, say, that clear feedback can help unlock.
 
 ## Reflection
 
-- TypeScript is about types.  I used them.  Specified parameter types, function return types, probably will use a type alias before finishing I shouldn't wonder, used index signatures for handling dynamic data.  OOP (object oriented programming) is implemented through use of classes with methods, creation of new instances of those classes, use of conceptual objects to organize, reference, and manipulate data.
+- TypeScript is about types.  I used them.  Specified parameter types, function return types, probably will use a type alias before finishing I shouldn't wonder, used index signatures for handling dynamic data.  OOP (object oriented programming) is implemented through use of classes with methods, creation of new instances of those classes, use of conceptual objects and folders/files structuresto organize, reference, and manipulate data.
 
-- I didn't overcome the psychological challenge, as it's not within my ability to resolve the cause.  Bothered about losing earlier points on assignments and not knowing why I lost points as feedback wasn't given, or was not specific enough that I could identify specific issues.  It's like a black box function that you can't debug.  I can't even say I should adjust my thoughts on the matter; I think it's perfectly natural to want to know how to improve a process.  If I choose not to go to certain lengths to get points on an assignment that's a choice I make; if I lose points and don't know why that's just confusing.
+- Psychological challenge (re: not knowing why losing points) not overcome, but can be put aside for the moment.  I understand there's a lot of extra work being asked of the teaching staff, and the matter need not be resolved immediately.  Though I also think, will the load really lighten down the line?  I suppose I'll take a chance on it.
 
-- I handled async through async/await, as required by the assignment.  Handled errors using custom error and error handling function as specified by assignment.  Read up on error propagation to make sure my approach was correct; as I understand it I shouldn't pass an error up a chain, but handle it near to the point of origin so the trace is useful.  Of course, if I lose points I won't know if it's because an instructor just didn't like the way I handled errors or what it was.  It works perfectly fine as far as I understand matters; I'm fine to change practices if I know what to change, but if I don't know what to change, you can see how changing would be a problem.
+Had a pretty bad challenge getting Typescript to work with HTML.  Workarounds I used to get Typescript to work with Node turned out to be ineffective for HTML.  There was no good documentation on the subject (most being seven years old or more), and error messages did not help.  To give some idea of the range of errors, exports was not defined, then I got imports to not work, then I got three MIME errors.  It would have gone on for I'd guess at least another twenty hours plus having taken up the morning already.  That's just how it is sometimes.  Bryan knew the fix, but I can honestly say without his personal intervention, no way could I have fixed it in time for submission.
 
-## Le Weird
+- I handled async through async/await, as required by the assignment.  Handled errors using custom error and error handling function as specified by assignment.  Read up on error propagation to make sure my approach was correct; as I understand it I shouldn't pass an error up a chain, but handle it near to the point of origin so the trace is useful.
 
-Initially on trying to use Typescript file in HTML, had error 'index.js:11 Uncaught ReferenceError: exports is not defined
-    at index.js:11:23'
+## Whack A Mole: Typescript into HTML
 
-On attempting to track down the issue, I put a console.log in the top level of my Typescript (.ts) file, and checked to make sure it compiled into Javascript (.js).  Viewing the index.html file in Chrome, launched through VSCode LiveServer, the console.log did not print to console.  The error mentioned above still showed.
+When attempting to use imports, VSCode had an error stating type module needed.  So I put in type module in package.json.  Then I couldn't import .ts files, so I turned on allowTSExtensions true in tsconfig.json, which in turn had me needing to turn noEmit on, which meant npx tsc wouldn't compile Typescript into Javascript.  So I found out I had to re-enable noEmit, etc.  That was the first couple labs.  I don't think any of that was covered in class.  (Nor, as I recall, were the issues I ran into trying to get Typescript working with HTML covered).  I asked around a bit, but I think most other people weren't at that part as they didn't have useful advice - exceptions noted below.
 
-I did not find any good responses to the issue using Google search, so posted in the class Slack help thread for the day.  While waiting on a reply, I looked for more documentation and eventually found it.  Bryan advised on Slack help how to fix a possibly related package.json issue; I fixed that.
+At any rate, when trying to get Typescript working with HTML, I got an error stating modules wasn't defined.  I tried a console.log at the top level that didn't print, so I don't think the code was even running.  Various years-old solutions online recommended doing things.  So I tried various combinations of O(2^n) (I know it's just the worst O(n)) of adding type module in HTML, adding a script tag defining module before my script tag linking to index.js, changing files to not specify .ts (I thought this was a mistake and it was, but I wasn't to find that out until much later), adding extra lines of code in index.js after compilation, adding different lines of code in index.ts before compilation, and of course lots of variations of editing package.json and tsconfig.json.  I referenced documentation on things like Object.definePropertyOf, just lots and lots of documentation that didn't really lead anywhere.  Lots and lots of different things, probably a lot I'm not mentioning here.
 
-I changed my search terms and found https://stackoverflow.com/questions/43042889/typescript-referenceerror-exports-is-not-defined
+I talked with Karl before Bryan's office hours today (2025 July 17, Thursday); he hadn't gotten Typescript working with HTML, but he recommended some things, some of which turned out to be on the right track (which I'd also had a lead on, changing the version like es2016 or some such thing), and other things that turned out not to help.  But Karl's generally helpful, and it says something that he shares his personal time to help others with their personal issues.
 
-Tried adding `<script>var exports = {};</script>` before script referencing index.js.  I then received index.js:12 Uncaught ReferenceError: require is not defined
-    at index.js:12:22
-
-Can't say for sure, but I imagine exports was something that was required for require to work, defining it ahead of time wasn't overwritten (I speculate it may be a 'strict' mode thing, which Typescript uses but am not looking into it as I shouldn't be disabling strict mode anyways).
-
-Next I tried commenting out in tsconfig.json "module": "commonjs".  New errors showed in HTML.  This is expected.  The answer was something like seven years old.  Errors followed.
-
-Product.ts:1 Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "video/mp2t". Strict MIME type checking is enforced for module scripts per HTML spec.Understand this error
-src/services/apiService.ts:1 Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "video/mp2t". Strict MIME type checking is enforced for module scripts per HTML spec.Understand this error
-errorHandler.ts:1 Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "video/mp2t". Strict MIME type checking is enforced for module scripts per HTML spec.
-
-Removed type = "module" from HTML script tag.  Removed `<script>var exports = {};</script>` before script referencing index.js.
-
-Now have
-
-index.js:10 Uncaught SyntaxError: Cannot use import statement outside a module (at index.js:10:1)
-
-package.json has "type": "module".  At this point I think I've undone every change I made before the error, but the error is different.  At any rate, I do a Google search for the current error.
-
-Spoke with Karl some about the issue.  Tried various things.  Still had loads of errors.
-
-## Bryan Office Hours
-
-Went to office hours, Bryan mentioned some changes to make, which I may add to this writeup later.  Long story short, some of the things I did to get Typescript working with node were an issue when trying to get Typescript working with HTML.  Multiple lines of code had to be changed after reinstallation of typescript and typescript initialization-compilation, which were not things that I had seen really mentioned to be changed when looking up the issue.  
-
-Karl had mentioned some things, and I'd seen some references that I'd have followed up on, but it was still probably something like several hours out from working code, if it would even have been fixed then.  As of this writing, there's about six hours left until the SBA is due.  Basically, would not have been done without Bryan, I think.
-
-There wasn't anything in class materials that I recalled about how to address the issue.  So, right.
+It just so happened that I'd finished up the Typescript/Node part of the assignment (all the mandatory parts) the same night the SBA was assigned.  (Had to, as I knew I'd be tied up Thursday night / Friday morning).  So, I knew about the HTML issue and was ready to ask at office hours.  Bryan fixed up the Typescript into HTML issues REAL quick, I'll have to go back and compare line by line with my Lab 1 and 2 to see what he did differently.  Very specific changes, I recall, especially some in tsconfig.json that I hadn't had a lead on at all at that point.
 
 ## Project Planning
 
-I did not plan structure of project based on API research, as I saw nothing unusual in the API documentation.  So I expect I will simply implement API similarly to class / previous examples.
+I did not plan structure of project based on API research, as I saw nothing unusual in the API documentation.  I implemented the API similar to class instructional materials, and/or references found online.  In the end, there really wasn't anything too unusual; I think the only real change I'd make with more time is maybe some additional styling and formatting, like converting an array of objects into a div for each object, rather than a single div.  But then, there's a lot of other non-mission critical things I could change, and the entire conversion to work with HTML was optional in any event.
 
-Project Plan:  Follow instructions, think about file structure and control flow, implement.
+Project Plan:  Follow instructions, think about file structure and control flow, implement.  (Worked.  Except for those ruddy awful Typescript into HTML issues.)
 
 ## Resources
 
@@ -77,3 +43,4 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://regex101.com/
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child

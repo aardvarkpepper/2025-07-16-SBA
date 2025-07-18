@@ -62,7 +62,9 @@ import { camelCaseConverterWithColon, thingToString } from '../utils/textMethods
 export class Product {
     constructor(product) {
         this.displayDetails = (productContainer) => {
-            const fragment = new DocumentFragment();
+            //const fragment = new DocumentFragment();
+            const productDiv = document.createElement('div');
+            productDiv.classList.add("product");
             for (const key in this) {
                 const productPropertyContainer = document.createElement('div');
                 if (typeof this[key] !== 'function') {
@@ -79,10 +81,10 @@ export class Product {
                     //   productPropertyValue.textContent = this[key];
                     // }
                     productPropertyContainer.appendChild(productPropertyValue);
-                    fragment.appendChild(productPropertyContainer);
+                    productDiv.appendChild(productPropertyContainer);
                 }
             }
-            productContainer.appendChild(fragment);
+            productContainer.appendChild(productDiv);
             // return productContainer; I don't think it's necessary; should directly append.
             //return '======='; // separator, and so test doesn't have 'undefined'
         };

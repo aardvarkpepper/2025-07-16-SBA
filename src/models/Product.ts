@@ -74,7 +74,9 @@ export class Product {
   }
   displayDetails = (productContainer: HTMLElement): void => {
 
-    const fragment = new DocumentFragment();
+    //const fragment = new DocumentFragment();
+    const productDiv = document.createElement('div');
+    productDiv.classList.add("product");
 
     for (const key in this) {
       const productPropertyContainer = document.createElement('div');
@@ -94,10 +96,10 @@ export class Product {
         // }
 
         productPropertyContainer.appendChild(productPropertyValue);
-        fragment.appendChild(productPropertyContainer);
+        productDiv.appendChild(productPropertyContainer);
       }
     }
-    productContainer.appendChild(fragment);
+    productContainer.appendChild(productDiv);
 
     // return productContainer; I don't think it's necessary; should directly append.
     //return '======='; // separator, and so test doesn't have 'undefined'
