@@ -76,3 +76,4 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
 https://regex101.com/
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries

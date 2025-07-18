@@ -1,5 +1,6 @@
 import { calculateDiscount } from '../utils/discountCalculator.js';
 import { calculateTax } from '../utils/taxCalculator.js';
+import { camelCaseConverterWithColon, thingToString, objectToString } from '../utils/textMethods.js';
 
 // const mrTest = {
 //   "id": 1,
@@ -80,16 +81,17 @@ export class Product {
       if (typeof this[key] !== 'function') {
         const productPropertyKey = document.createElement('span');
         const productPropertyValue = document.createElement('span');
-        productPropertyKey.textContent = key;
+        productPropertyKey.textContent = camelCaseConverterWithColon(key);
         productPropertyContainer.appendChild(productPropertyKey);
+        productPropertyValue.textContent = thingToString(this[key]);
 
-        if (typeof this[key] === 'object') {
-          console.log(`${key}, ${JSON.stringify(this[key])}`);
-          productPropertyValue.textContent = JSON.stringify(this[key]);
-        } else {
-          console.log(`${key}, ${this[key]}`);
-          productPropertyValue.textContent = this[key];
-        }
+        // if (typeof this[key] === 'object') {
+        //   console.log(`${key}, ${JSON.stringify(this[key])}`);
+        //   productPropertyValue.textContent = JSON.stringify(this[key]);
+        // } else {
+        //   console.log(`${key}, ${this[key]}`);
+        //   productPropertyValue.textContent = this[key];
+        // }
 
         productPropertyContainer.appendChild(productPropertyValue);
         fragment.appendChild(productPropertyContainer);
