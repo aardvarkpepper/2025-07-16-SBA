@@ -1,6 +1,5 @@
 import { calculateDiscount } from '../utils/discountCalculator.js';
 import { calculateTax } from '../utils/taxCalculator.js';
-import { camelCaseConverterWithColon, thingToString } from '../utils/textMethods.js';
 // const mrTest = {
 //   "id": 1,
 //   "title": "Essence Mascara Lash Princess",
@@ -61,32 +60,47 @@ import { camelCaseConverterWithColon, thingToString } from '../utils/textMethods
 // };
 export class Product {
     constructor(product) {
-        this.displayDetails = (productContainer) => {
-            //const fragment = new DocumentFragment();
-            const productDiv = document.createElement('div');
-            productDiv.classList.add("product");
+        /**
+         * Rewriting displayDetails to chop HTML/DOM references, apparently CORS error.
+         */
+        // displayDetails = (productContainer: HTMLElement): void => {
+        //   //const fragment = new DocumentFragment();
+        //   const productDiv = document.createElement('div');
+        //   productDiv.classList.add("product");
+        //   for (const key in this) {
+        //     const productPropertyContainer = document.createElement('div');
+        //     if (typeof this[key] !== 'function') {
+        //       const productPropertyKey = document.createElement('span');
+        //       const productPropertyValue = document.createElement('span');
+        //       productPropertyKey.textContent = camelCaseConverterWithColon(key);
+        //       productPropertyContainer.appendChild(productPropertyKey);
+        //       productPropertyValue.textContent = thingToString(this[key]);
+        //       // if (typeof this[key] === 'object') {
+        //       //   console.log(`${key}, ${JSON.stringify(this[key])}`);
+        //       //   productPropertyValue.textContent = JSON.stringify(this[key]);
+        //       // } else {
+        //       //   console.log(`${key}, ${this[key]}`);
+        //       //   productPropertyValue.textContent = this[key];
+        //       // }
+        //       productPropertyContainer.appendChild(productPropertyValue);
+        //       productDiv.appendChild(productPropertyContainer);
+        //     }
+        //   }
+        //   productContainer.appendChild(productDiv);
+        //   // return productContainer; I don't think it's necessary; should directly append.
+        //   //return '======='; // separator, and so test doesn't have 'undefined'
+        // }
+        this.displayDetails = () => {
             for (const key in this) {
-                const productPropertyContainer = document.createElement('div');
                 if (typeof this[key] !== 'function') {
-                    const productPropertyKey = document.createElement('span');
-                    const productPropertyValue = document.createElement('span');
-                    productPropertyKey.textContent = camelCaseConverterWithColon(key);
-                    productPropertyContainer.appendChild(productPropertyKey);
-                    productPropertyValue.textContent = thingToString(this[key]);
-                    // if (typeof this[key] === 'object') {
-                    //   console.log(`${key}, ${JSON.stringify(this[key])}`);
-                    //   productPropertyValue.textContent = JSON.stringify(this[key]);
-                    // } else {
-                    //   console.log(`${key}, ${this[key]}`);
-                    //   productPropertyValue.textContent = this[key];
-                    // }
-                    productPropertyContainer.appendChild(productPropertyValue);
-                    productDiv.appendChild(productPropertyContainer);
+                    if (typeof this[key] === 'object') {
+                        console.log(`${key}, ${JSON.stringify(this[key])}`);
+                    }
+                    else {
+                        console.log(`${key}, ${this[key]}`);
+                    }
                 }
             }
-            productContainer.appendChild(productDiv);
-            // return productContainer; I don't think it's necessary; should directly append.
-            //return '======='; // separator, and so test doesn't have 'undefined'
         };
         this.getPriceWithDiscount = (decimalPlaces = 2) => {
             const discountPrice = calculateDiscount(this.price, this.discountPercentage);
